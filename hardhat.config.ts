@@ -15,6 +15,7 @@ import { getEnv, Logger, logger, testRunner } from './hardhat/utils'
 export const NETWORKS = <const>[
   'mainnet',
   'goerli',
+  'sepolia',
   'arbitrum',
   'arbitrumGoerli',
   'bsc',
@@ -72,6 +73,12 @@ const networkConfig: Record<Networks, NetworkUserConfigExtended> = {
     url: getEnv('GOERLI_RPC_URL') || '',
     getExplorerUrl: (address: string) => `https://goerli.etherscan.io/address/${address}`,
     chainId: 5,
+    accounts: [testnetMnemonic],
+  },
+  sepolia: {
+    url: getEnv('SEPOLIA_RPC_URL') || '',
+    getExplorerUrl: (address: string) => `https://sepolia.etherscan.io/address/${address}`,
+    chainId: 11155111,
     accounts: [testnetMnemonic],
   },
   arbitrum: {
@@ -201,6 +208,7 @@ const config: HardhatUserConfig = {
     apiKey: {
       mainnet: getEnv('ETHERSCAN_API_KEY'),
       goerli: getEnv('ETHERSCAN_API_KEY'),
+      sepolia: getEnv('ETHERSCAN_API_KEY'),
       optimisticEthereum: getEnv('OPTIMISTIC_ETHERSCAN_API_KEY'),
       arbitrumOne: getEnv('ARBISCAN_API_KEY'),
       bsc: getEnv('BSCSCAN_API_KEY'),

@@ -19,7 +19,7 @@ export const getDeployConfig = (network: DeployableNetworks, signers?: SignerWit
  *
  * NOTE: Add networks as needed
  */
-export type DeployableNetworks = Extract<Networks, 'bsc' | 'bscTestnet' | 'mainnet' | 'goerli' | 'polygon' | 'polygonTestnet' >
+export type DeployableNetworks = Extract<Networks, 'bsc' | 'bscTestnet' | 'mainnet' | 'goerli' | 'sepolia' | 'polygon' | 'polygonTestnet' >
 
 /**
  * Deployment Variables for each network
@@ -65,6 +65,13 @@ const deployableNetworkConfig: Record<DeployableNetworks, (signers?: SignerWithA
     }
   },
   goerli: (signers?: SignerWithAddress[]) => {
+    return {
+      proxyAdminAddress: '0x',
+      adminAddress: signers?.[0] || '0x',
+      wNative: '0x',
+    }
+  },
+  sepolia: (signers?: SignerWithAddress[]) => {
     return {
       proxyAdminAddress: '0x',
       adminAddress: signers?.[0] || '0x',
