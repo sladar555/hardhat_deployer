@@ -1,6 +1,6 @@
 # Local
 _*
-
+.env
 # Hardhat files
 cache
 artifacts
